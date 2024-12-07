@@ -1,2 +1,2 @@
-const SERVER_URL = "http://localhost:3002";
+const SERVER_URL = "https://enrolldeploy-production.up.railway.app";
 export { SERVER_URL};

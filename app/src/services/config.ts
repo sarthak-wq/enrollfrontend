@@ -1,2 +1,2 @@
-const SERVER_URL = "enrolldeploy.railway.internal";
+const SERVER_URL = "enrolldeploy-production.up.railway.app";
 export { SERVER_URL};

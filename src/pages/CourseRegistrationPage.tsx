@@ -194,6 +194,15 @@ const CourseRegistrationPage: React.FC = () => {
     setSubmissionError(null); // Reset submission error when closing dialog
   };
 
+  const fetchCourses = async () => {
+    try {
+      const availableCourses = await getAvailableCourses();
+      setCourses(availableCourses);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
+
   // Submit the new course data
   const handleSubmitCourse = async () => {
     const { maxSeats, faculty, courseOfferId, course, term } = newCourseData;
@@ -207,6 +216,7 @@ const CourseRegistrationPage: React.FC = () => {
 
     try {
       await addNewCourse(newCourseData); // Call the API
+      fetchCourses();
       setDialogOpen(false); // Close the dialog on success
       setNewCourseData({
         courseOfferId: '',
@@ -228,14 +238,7 @@ const CourseRegistrationPage: React.FC = () => {
       setError('Failed to add new course. Please try again.');
     }
   };
-  const fetchCourses = async () => {
-    try {
-      const availableCourses = await getAvailableCourses();
-      setCourses(availableCourses);
-    } catch (error) {
-      console.error('Error fetching courses:', error);
-    }
-  };
+  
 
   // Handle course deletion and update
   const handleCourseDeleted = () => {
